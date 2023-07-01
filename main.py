@@ -1,7 +1,7 @@
 from cmu_graphics import *
 from PIL import Image
-import view
 import button
+import mainScreen
 
 def onAppStart(app):
     app.width = 1200
@@ -14,7 +14,8 @@ def onAppStart(app):
     app.mainPageTypingText = button.Label(f"{app.currText}", (app.width//2, app.height//2), 60, 'impact', app.currTextColour, 'center', False)
 
 def redrawAll(app):
-    view.drawText(app)
+    mainScreen.drawMainScreen(app)
+    
 
 
 #-------------------------------------------------------------------------------

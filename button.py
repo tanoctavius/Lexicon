@@ -14,8 +14,7 @@ class Button:
     
     def drawButton(self):
         x0, y0, width, length = self.bounds
-        drawRect(x0, y0, width, length, fill = self.fill, border = self.outlineColour, 
-                 borderWidth = self.outlineWidth)
+        drawRect(x0, y0, width, length, fill = self.fill, border = self.outlineColour, borderWidth = self.outlineWidth)
 
 #-------------------------------------------------------------------------------
 class Label: 
@@ -30,5 +29,4 @@ class Label:
         
     def drawLabel(self):
         x0, y0 = self.bounds 
-        drawLabel(self.message, x0, y0, size = self.size, font = self.font, fill = self.colour, 
-                  align = self.alignment, bold = self.bold)
+        drawLabel(self.message, x0, y0, size = self.size, font = self.font, fill = self.colour, align = self.alignment, bold = self.bold)
