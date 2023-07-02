@@ -12,14 +12,10 @@ def drawMainScreen(app):
     drawRect(app.width//2 - 360, 150, 720, 50, fill = rgb(65, 65, 70))
 
     #Draws the second rectangle
-    drawRect(app.width//2 - 70, 265, 140, 40, fill = rgb(65, 65, 70))
-    drawCircle(app.width//2 - 75, 285, 20, fill = rgb(65, 65, 70))
-    drawCircle(app.width//2 - 80 + 140 + 10, 285, 20, fill = rgb(65, 65, 70))
+    drawRect(app.secondRectangleStartingXCoord, 265, 140, 40, fill = rgb(65, 65, 70))
+    drawCircle(app.secondRectangleStartingXCoord - 5, 285, 20, fill = rgb(65, 65, 70))
+    drawCircle(app.secondRectangleStartingXCoord + 140, 285, 20, fill = rgb(65, 65, 70))
     drawImage(app.clockIcon, app.width//2 - 70, 275, width = 20, height = 20)
-    button.Label.drawLabel(app.fifteenLabel)
-    button.Label.drawLabel(app.thirtyLabel)
-    button.Label.drawLabel(app.sixtyLabel)
-    button.Label.drawLabel(app.ninetyLabel)
     button.Label.drawLabel(app.lineTimeLabel)
     
     #Initialising the options
@@ -31,3 +27,32 @@ def drawMainScreen(app):
     button.Label.drawLabel(app.lowercase)
     button.Label.drawLabel(app.uppercase)
     button.Label.drawLabel(app.mainPageMiniTitle)
+
+    #Restart Icon
+    drawImage(app.restartIcon, app.width//2 - app.restartIconWidth, app.height - 175, width = app.restartIconWidth, height = app.restartIconWidth)
+
+#Checking the time label for the mouse, check whether it would light up:
+def timeLabelLightUp(app):
+    values = ["15", "30", "60", "90"]
+    for rect in range(4):
+        if rect == app.selectedTimeRectIndex:
+            rectFillTimeColour = "white"
+        elif rect != app.selectedTimeRectIndex:
+            rectFillTimeColour = "grey"
+        drawLabel(values[rect], app.timeLabelStartingPoint + 25 * rect, app.timeLabelYStartingPoint, font = 'impact', size = app.currTimeFont, align = 'center', fill = rectFillTimeColour)
+
+#Checking whether the mouse hovers over the time
+def onMouseMoveLightUp(app, mouseX, mouseY):
+    timeHoverIndex = getTimeIndexFromMouseMove(app, mouseX, mouseY)
+    if (timeHoverIndex == None):
+        app.selectedTimeRectIndex = None 
+    elif app.selectedTimeRectIndex == None: 
+        app.selectedTimeRectIndex = timeHoverIndex
+
+#CHecking whether the mouse is within the bounds
+def getTimeIndexFromMouseMove(app, mouseX, mouseY):
+    for rectNum in range(4): 
+        if app.timeLabelStartingPoint + (25 * rectNum) <= mouseX <= app.timeLabelStartingPoint + (25 * rectNum) + 25:
+            if app.timeLabelYStartingPoint <= mouseY <= app.timeLabelYStartingPoint + 20:
+                return rectNum
+    return None
