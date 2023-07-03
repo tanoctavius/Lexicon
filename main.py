@@ -41,6 +41,7 @@ def reset(app):
     app.currTimeLabel = "Grey"
     app.currTimeFont = 15
     app.lineTimeLabel = button.Label("|", (570 - 7, 285), 20, 'impact', app.currTimeLabel, 'center', True)
+    app.hoverTimeRectIndex = None
     app.selectedTimeRectIndex = None
 
     app.currChoiceColour = "Gray"
@@ -63,6 +64,10 @@ def redrawAll(app):
 def onMouseMove(app, mouseX, mouseY):
     if app.mainScreen:
         mainScreen.onMouseMoveLightUp(app, mouseX, mouseY)
+
+def onMousePress(app, mouseX, mouseY):
+    if app.mainScreen:
+        mainScreen.onMousePressLightUp(app, mouseX, mouseY)
 
 #-------------------------------------------------------------------------------
 #Opening Images

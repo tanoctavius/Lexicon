@@ -36,18 +36,21 @@ def timeLabelLightUp(app):
     values = ["15", "30", "60", "90"]
     for rect in range(4):
         if rect == app.selectedTimeRectIndex:
+            rectFillTimeColour = rgb(228, 112, 61)
+        elif rect == app.hoverTimeRectIndex:
             rectFillTimeColour = "white"
-        elif rect != app.selectedTimeRectIndex:
+        elif rect != app.hoverTimeRectIndex and rect != app.selectedTimeRectIndex:
             rectFillTimeColour = "grey"
         drawLabel(values[rect], app.timeLabelStartingPoint + 25 * rect, app.timeLabelYStartingPoint, font = 'impact', size = app.currTimeFont, align = 'center', fill = rectFillTimeColour)
 
 #Checking whether the mouse hovers over the time
 def onMouseMoveLightUp(app, mouseX, mouseY):
     timeHoverIndex = getTimeIndexFromMouseMove(app, mouseX, mouseY)
-    if (timeHoverIndex == None):
-        app.selectedTimeRectIndex = None 
-    else: 
-        app.selectedTimeRectIndex = timeHoverIndex
+    app.hoverTimeRectIndex = None if (timeHoverIndex == None) else timeHoverIndex
+
+def onMousePressLightUp(app, mouseX, mouseY):
+    timePressIndex = getTimeIndexFromMouseMove(app, mouseX, mouseY)
+    app.selectedTimeRectIndex = None if (timePressIndex == None) else timePressIndex
 
 #CHecking whether the mouse is within the bounds
 def getTimeIndexFromMouseMove(app, mouseX, mouseY):
