@@ -79,8 +79,8 @@ def getChangedStyle(text, style):
         elif style == "Undercase":
             result += word.lower() + " "
         
-        elif style == "Uppercase":
-            result += word.upper + " "
+        elif style == "Normal":
+            result += word + " "
         
         elif style == "CrazySpaces":
             values = ["@", "<", ">", "/", "[", "]", "#", "$", "%", "^", "*"]
