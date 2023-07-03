@@ -24,10 +24,15 @@ def drawMainScreen(app):
 
     #Restart Icon
     drawImage(app.restartIcon, app.width//2 - app.restartIconWidth, app.height - 175, width = app.restartIconWidth, height = app.restartIconWidth)
+    
+    #Can start to type if both time and option is selected
+    if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
+        drawImage(app.restartIcon, 500, 500, width = app.restartIconWidth, height = app.restartIconWidth)
+        
 
 #Checking whether the options label is aligned with the mouse, will light up if clicked (reddish-yellow) or hovered over (white):
 def optionsLabelLightUp(app):
-    values = ["crazyCapital", "crazyNumber", "crazySpaces", "lowercase", "uppercase", "mixed"]
+    values = ["crazyCapital", "crazyNumber", "crazySpaces", "normal", "uppercase", "mixed"]
     for rect in range(6):
         if rect == app.selectedLabelRectIndex:
             rectFillTimeColour = rgb(228, 112, 61)
@@ -76,8 +81,14 @@ def onMouseMoveLightUp(app, mouseX, mouseY):
 #Checking whether the mouse presses  the time
 def onMousePressLightUp(app, mouseX, mouseY):
     #For the time label
-    timePressIndex = getTimeIndexFromMouseMove(app, mouseX, mouseY)
-    app.selectedTimeRectIndex = None if (timePressIndex == None) else timePressIndex
+    temp1 = getTimeIndexFromMouseMove(app, mouseX, mouseY)
+    if temp1 != None:
+        timePressIndex = temp1
+        if timePressIndex != None:
+            app.selectedTimeRectIndex = timePressIndex
     #For the options label
-    optionsPressIndex = getOptionsIndexFromMouseMove(app, mouseX, mouseY)
-    app.selectedLabelRectIndex = None if (optionsPressIndex == None) else optionsPressIndex
+    temp = getOptionsIndexFromMouseMove(app, mouseX, mouseY)
+    if temp != None:
+        optionsPressIndex = temp
+        if optionsPressIndex != None: 
+            app.selectedLabelRectIndex = optionsPressIndex
