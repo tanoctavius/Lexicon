@@ -18,18 +18,24 @@ def drawMainScreen(app):
     drawImage(app.clockIcon, app.width//2 - 70, 275, width = 20, height = 20)
     button.Label.drawLabel(app.lineTimeLabel)
     
-    #Initialising the options
-    button.Label.drawLabel(app.crazyCapital)
-    button.Label.drawLabel(app.crazyNumber)
+    #Initialising the titles:
     button.Label.drawLabel(app.mainPageTitle)
-    button.Label.drawLabel(app.crazySpaces)
-    button.Label.drawLabel(app.mixed)
-    button.Label.drawLabel(app.lowercase)
-    button.Label.drawLabel(app.uppercase)
     button.Label.drawLabel(app.mainPageMiniTitle)
 
     #Restart Icon
     drawImage(app.restartIcon, app.width//2 - app.restartIconWidth, app.height - 175, width = app.restartIconWidth, height = app.restartIconWidth)
+
+#Checking whether the options label is aligned with the mouse, will light up if clicked (reddish-yellow) or hovered over (white):
+def optionsLabelLightUp(app):
+    values = ["crazyCapital", "crazyNumber", "crazySpaces", "lowercase", "uppercase", "mixed"]
+    for rect in range(6):
+        if rect == app.selectedLabelRectIndex:
+            rectFillTimeColour = rgb(228, 112, 61)
+        elif rect == app.hoverLabelRectIndex:
+            rectFillTimeColour = "white"
+        elif rect != app.hoverLabelRectIndex and rect != app.selectedLabelRectIndex:
+            rectFillTimeColour = "grey"
+        drawLabel(values[rect], app.optionsLabelStartingPoint + 120 * rect, app.optionsLabelYStartingPoint, font = 'impact', size = app.currTimeFont, align = 'center', fill = rectFillTimeColour)
 
 #Checking the time label for the mouse, check whether it would light up:
 def timeLabelLightUp(app):
@@ -43,19 +49,35 @@ def timeLabelLightUp(app):
             rectFillTimeColour = "grey"
         drawLabel(values[rect], app.timeLabelStartingPoint + 25 * rect, app.timeLabelYStartingPoint, font = 'impact', size = app.currTimeFont, align = 'center', fill = rectFillTimeColour)
 
-#Checking whether the mouse hovers over the time
-def onMouseMoveLightUp(app, mouseX, mouseY):
-    timeHoverIndex = getTimeIndexFromMouseMove(app, mouseX, mouseY)
-    app.hoverTimeRectIndex = None if (timeHoverIndex == None) else timeHoverIndex
-
-def onMousePressLightUp(app, mouseX, mouseY):
-    timePressIndex = getTimeIndexFromMouseMove(app, mouseX, mouseY)
-    app.selectedTimeRectIndex = None if (timePressIndex == None) else timePressIndex
-
-#CHecking whether the mouse is within the bounds
+#Checking whether the mouse is within the bounds
 def getTimeIndexFromMouseMove(app, mouseX, mouseY):
     for rectNum in range(4): 
         if app.timeLabelStartingPoint + (25 * rectNum) - 25//2 <= mouseX <= app.timeLabelStartingPoint + (25 * rectNum) + 25 - 25//2:
             if app.timeLabelYStartingPoint - 25//2 <= mouseY <= app.timeLabelYStartingPoint + 20 - 25//2:
                 return rectNum
     return None
+
+def getOptionsIndexFromMouseMove(app, mouseX, mouseY):
+    for rectNum in range(6):
+        if app.optionsLabelStartingPoint - 50 + 120 * rectNum <= mouseX <= app.optionsLabelStartingPoint + 70 + 120 * rectNum:
+            if app.optionsLabelYStartingPoint - 25 <= mouseY <= app.optionsLabelYStartingPoint + 25:
+                return rectNum
+    return None
+
+#Checking whether the mouse hovers over the time
+def onMouseMoveLightUp(app, mouseX, mouseY):
+    #For the time label
+    timeHoverIndex = getTimeIndexFromMouseMove(app, mouseX, mouseY)
+    app.hoverTimeRectIndex = None if (timeHoverIndex == None) else timeHoverIndex
+    #For the options label
+    optionsHoverIndex = getOptionsIndexFromMouseMove(app, mouseX, mouseY)
+    app.hoverLabelRectIndex = None if (optionsHoverIndex == None) else optionsHoverIndex
+
+#Checking whether the mouse presses  the time
+def onMousePressLightUp(app, mouseX, mouseY):
+    #For the time label
+    timePressIndex = getTimeIndexFromMouseMove(app, mouseX, mouseY)
+    app.selectedTimeRectIndex = None if (timePressIndex == None) else timePressIndex
+    #For the options label
+    optionsPressIndex = getOptionsIndexFromMouseMove(app, mouseX, mouseY)
+    app.selectedLabelRectIndex = None if (optionsPressIndex == None) else optionsPressIndex

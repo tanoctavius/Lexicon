@@ -31,6 +31,8 @@ def onAppStart(app):
     app.restartIconWidth = 30
     app.timeLabelStartingPoint = 570 + 25//2
     app.timeLabelYStartingPoint = 285
+    app.optionsLabelStartingPoint = 240 + 120//2
+    app.optionsLabelYStartingPoint = 175
 
     reset(app)
 
@@ -41,22 +43,19 @@ def reset(app):
     app.currTimeLabel = "Grey"
     app.currTimeFont = 15
     app.lineTimeLabel = button.Label("|", (570 - 7, 285), 20, 'impact', app.currTimeLabel, 'center', True)
+    
+    #Initialising values for hovering + pressing options and time ribbon
     app.hoverTimeRectIndex = None
     app.selectedTimeRectIndex = None
-
-    app.currChoiceColour = "Gray"
-    app.crazyCapital = button.Label("CrazyCapital", (240 + 120//2, 175), 15, 'impact', app.currChoiceColour, 'center', False)
-    app.crazyNumber = button.Label("CrazyNumber", (240 + 120//2 + 120, 175), 15, 'impact', app.currChoiceColour, 'center', False)
-    app.crazySpaces = button.Label("CrazySpaces", (240 + 120//2 + 240, 175), 15, 'impact', app.currChoiceColour, 'center', False)
-    app.uppercase = button.Label("Uppercase", (240 + 120//2 + 360, 175), 15, 'impact', app.currChoiceColour, 'center', False)
-    app.lowercase = button.Label("Lowercase", (240 + 120//2 + 480, 175), 15, 'impact', app.currChoiceColour, 'center', False)
-    app.mixed = button.Label("Mixed", (240 + 120//2 + 600, 175), 15, 'impact', app.currChoiceColour, 'center', False)
+    app.selectedLabelRectIndex = None
+    app.hoverLabelRectIndex = None
 
 #----------------View Class--------------------------------
 def redrawAll(app):
     if app.mainScreen:
         mainScreen.drawMainScreen(app)
         mainScreen.timeLabelLightUp(app)
+        mainScreen.optionsLabelLightUp(app)
     if app.loseScreen:
         loseScreen.drawLoseScreen(app)
     
