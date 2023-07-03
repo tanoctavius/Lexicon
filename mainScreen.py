@@ -46,13 +46,13 @@ def onMouseMoveLightUp(app, mouseX, mouseY):
     timeHoverIndex = getTimeIndexFromMouseMove(app, mouseX, mouseY)
     if (timeHoverIndex == None):
         app.selectedTimeRectIndex = None 
-    elif app.selectedTimeRectIndex == None: 
+    else: 
         app.selectedTimeRectIndex = timeHoverIndex
 
 #CHecking whether the mouse is within the bounds
 def getTimeIndexFromMouseMove(app, mouseX, mouseY):
     for rectNum in range(4): 
-        if app.timeLabelStartingPoint + (25 * rectNum) <= mouseX <= app.timeLabelStartingPoint + (25 * rectNum) + 25:
-            if app.timeLabelYStartingPoint <= mouseY <= app.timeLabelYStartingPoint + 20:
+        if app.timeLabelStartingPoint + (25 * rectNum) - 25//2 <= mouseX <= app.timeLabelStartingPoint + (25 * rectNum) + 25 - 25//2:
+            if app.timeLabelYStartingPoint - 25//2 <= mouseY <= app.timeLabelYStartingPoint + 20 - 25//2:
                 return rectNum
     return None
