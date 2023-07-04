@@ -5,7 +5,20 @@ def drawMainScreen(app):
     #Initialise the background:
     drawRect(0, 0, app.width, app.height, fill = rgb(70, 75, 80))
     drawImage(app.keyboardIcon, 105, 95, width = 40, height = 20)
+    
+    #Initialising the titles:
+    button.Label.drawLabel(app.mainPageTitle)
+    button.Label.drawLabel(app.mainPageMiniTitle)
 
+    #Restart Icon
+    drawImage(app.restartIcon, app.width//2 - app.restartIconWidth, app.height - 175, width = app.restartIconWidth, height = app.restartIconWidth)
+    
+    #Can start to type if both time and option is selected
+    if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
+        drawLabel(f'{app.secondsLeft}', app.width//2, app.timeLabelYStartingPoint - 100, font = 'impact', size = 30, align = 'center', fill = rgb(228, 112, 61))
+        
+
+def drawRectangleCircleOptions(app):
     #Draws the first rectangle + options
     drawCircle(app.width//2 - 350, 175, 25, fill = rgb(65, 65, 70))
     drawCircle(970, 175, 25, fill = rgb(65, 65, 70))
@@ -17,18 +30,6 @@ def drawMainScreen(app):
     drawCircle(app.secondRectangleStartingXCoord + 140, 285, 20, fill = rgb(65, 65, 70))
     drawImage(app.clockIcon, app.width//2 - 70, 275, width = 20, height = 20)
     button.Label.drawLabel(app.lineTimeLabel)
-    
-    #Initialising the titles:
-    button.Label.drawLabel(app.mainPageTitle)
-    button.Label.drawLabel(app.mainPageMiniTitle)
-
-    #Restart Icon
-    drawImage(app.restartIcon, app.width//2 - app.restartIconWidth, app.height - 175, width = app.restartIconWidth, height = app.restartIconWidth)
-    
-    #Can start to type if both time and option is selected
-    if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
-        drawImage(app.restartIcon, 500, 500, width = app.restartIconWidth, height = app.restartIconWidth)
-        
 
 #Checking whether the options label is aligned with the mouse, will light up if clicked (reddish-yellow) or hovered over (white):
 def optionsLabelLightUp(app):
@@ -86,6 +87,8 @@ def onMousePressLightUp(app, mouseX, mouseY):
         timePressIndex = temp1
         if timePressIndex != None:
             app.selectedTimeRectIndex = timePressIndex
+            values = ["15", "30", "60", "90"]
+            app.secondsLeft = values[app.selectedTimeRectIndex]
     #For the options label
     temp = getOptionsIndexFromMouseMove(app, mouseX, mouseY)
     if temp != None:

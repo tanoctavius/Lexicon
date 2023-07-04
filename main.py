@@ -37,9 +37,13 @@ def onAppStart(app):
     reset(app)
 
 def reset(app):
+    '''Screens:'''
     app.mainScreen = True
     app.loseScreen = False 
-
+    
+    '''Time Variables:'''
+    app.stepsPerSecond = 1
+    app.secondsLeft = 0
     app.currTimeLabel = "Grey"
     app.currTimeFont = 15
     app.lineTimeLabel = button.Label("|", (570 - 7, 285), 20, 'impact', app.currTimeLabel, 'center', True)
@@ -54,12 +58,22 @@ def reset(app):
 def redrawAll(app):
     if app.mainScreen:
         mainScreen.drawMainScreen(app)
-        mainScreen.timeLabelLightUp(app)
-        mainScreen.optionsLabelLightUp(app)
+
+        #Only once both options are selected, the options will dissapear
+        if app.selectedLabelRectIndex == None or app.selectedTimeRectIndex == None:
+            mainScreen.drawRectangleCircleOptions(app)
+            mainScreen.timeLabelLightUp(app)
+            mainScreen.optionsLabelLightUp(app)
+            
     if app.loseScreen:
         loseScreen.drawLoseScreen(app)
     
 #----------------Controller Class--------------------------------
+def onStep(app):
+    if app.mainScreen:
+        if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
+            app.secondsLeft = int(app.secondsLeft) - 1
+
 def onMouseMove(app, mouseX, mouseY):
     if app.mainScreen:
         mainScreen.onMouseMoveLightUp(app, mouseX, mouseY)
@@ -67,6 +81,11 @@ def onMouseMove(app, mouseX, mouseY):
 def onMousePress(app, mouseX, mouseY):
     if app.mainScreen:
         mainScreen.onMousePressLightUp(app, mouseX, mouseY)
+        
+        #If restart icon is selected, app is restarted
+        bounds = app.width//2 - app.restartIconWidth, app.height - 175, app.restartIconWidth, app.restartIconWidth
+        if button.Button.buttonBounds(mouseX, mouseY, bounds):
+            reset(app)
 
 #-------------------------------------------------------------------------------
 #Opening Images
