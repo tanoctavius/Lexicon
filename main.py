@@ -13,6 +13,9 @@ def onAppStart(app):
     #Initialising the screen:
     app.loseScreen = False
     app.mainScreen = True
+    app.leaderboardScreen = False
+    app.settingScreen = False
+    app.infoScreen = False
 
     #Initialising Typing Text | Main Page:
     app.currText = "None"
@@ -94,9 +97,26 @@ def onMousePress(app, mouseX, mouseY):
         mainScreen.onMousePressLightUp(app, mouseX, mouseY)
         
         #If restart icon is selected, app is restarted
-        bounds = app.width//2 - app.restartIconWidth, app.height - 175, app.restartIconWidth, app.restartIconWidth
-        if button.Button.buttonBounds(mouseX, mouseY, bounds):
+        restartBounds = app.width//2 - app.restartIconWidth, app.height - 175, app.restartIconWidth, app.restartIconWidth
+        if button.Button.buttonBounds(mouseX, mouseY, restartBounds):
             reset(app)
+
+        mainScreenBounds = 275, 93, 30, 20
+        if button.Button.buttonBounds(mouseX, mouseY, mainScreenBounds):
+            app.mainScreen = True
+
+        infoScreenBounds = 335, 93, 20, 20
+        if button.Button.buttonBounds(mouseX, mouseY, infoScreenBounds):
+            app.infoScreen = True
+
+        settingBounds = 320, 93, 20, 20
+        if button.Button.buttonBounds(mouseX, mouseY, settingBounds):
+            app.settingScreen = True
+
+        leaderboardBounds = 390, 93, 20, 20
+        if button.Button.buttonBounds(mouseX, mouseY, leaderboardBounds):
+            app.leaderboardScreen = True 
+        
 
 def onKeyPress(app, key):
     if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
