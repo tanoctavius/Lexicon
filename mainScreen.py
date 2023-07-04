@@ -4,14 +4,18 @@ import button
 def drawMainScreen(app):
     #Initialise the background:
     drawRect(0, 0, app.width, app.height, fill = rgb(70, 75, 80))
-    drawImage(app.keyboardIcon, 105, 95, width = 40, height = 20)
+    drawImage(app.keyboardIcon, 95, 80, width = 50, height = 30)
     
     #Initialising the titles:
     button.Label.drawLabel(app.mainPageTitle)
     button.Label.drawLabel(app.mainPageMiniTitle)
 
-    #Restart Icon
+    #Icon:
     drawImage(app.restartIcon, app.width//2 - app.restartIconWidth, app.height - 175, width = app.restartIconWidth, height = app.restartIconWidth)
+    drawImage(app.homeIcon, 275, 93, width = 30, height = 20)
+    drawImage(app.settingIcon, 320, 93, width = 20, height = 20)
+    drawImage(app.infoIcon, 355, 93, width = 20, height = 20)
+    drawImage(app.crownIcon, 390, 93, width = 20, height = 20)
     
     #Can start to type if both time and option is selected
     if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:

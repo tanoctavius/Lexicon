@@ -19,7 +19,7 @@ def onAppStart(app):
     app.currTextColour = "Grey"
     app.mainPageTitle = button.Label("l e x i c o n", (207, 100), 25, 'impact', rgb(181, 94, 73), 'center', False)
     app.mainPageTypingText = button.Label(f"{app.currText}", (app.width//2, app.height//2), 60, 'impact', app.currTextColour, 'center', False)
-    app.mainPageMiniTitle = button.Label("p r e m i e r     t y p i n g", (200, 76), 12.5, 'impact', rgb(210, 147, 128), 'center', False)
+    app.mainPageMiniTitle = button.Label("p r e m i e r     t y p e", (203, 76), 11.5, 'impact', rgb(210, 147, 128), 'center', False)
     app.secondRectangleStartingXCoord = app.width//2 - 70
 
     app.keyboardIcon = Image.open('images/keyboardIcon.png')
@@ -28,6 +28,14 @@ def onAppStart(app):
     app.clockIcon = CMUImage(app.clockIcon)
     app.restartIcon = Image.open('images/restart3.png')
     app.restartIcon = CMUImage(app.restartIcon)
+    app.infoIcon = Image.open('images/infoIcon.png')
+    app.infoIcon = CMUImage(app.infoIcon)
+    app.settingIcon = Image.open('images/settingIcon.png')
+    app.settingIcon = CMUImage(app.settingIcon)
+    app.homeIcon = Image.open('images/home.png')
+    app.homeIcon = CMUImage(app.homeIcon)
+    app.crownIcon = Image.open('images/crown.png')
+    app.crownIcon = CMUImage(app.crownIcon)
     app.restartIconWidth = 30
     app.timeLabelStartingPoint = 570 + 25//2
     app.timeLabelYStartingPoint = 285
@@ -47,6 +55,9 @@ def reset(app):
     app.currTimeLabel = "Grey"
     app.currTimeFont = 15
     app.lineTimeLabel = button.Label("|", (570 - 7, 285), 20, 'impact', app.currTimeLabel, 'center', True)
+
+    '''Typing variables:'''
+    app.inputCharacters = []
     
     #Initialising values for hovering + pressing options and time ribbon
     app.hoverTimeRectIndex = None
@@ -64,14 +75,14 @@ def redrawAll(app):
             mainScreen.drawRectangleCircleOptions(app)
             mainScreen.timeLabelLightUp(app)
             mainScreen.optionsLabelLightUp(app)
-            
+
     if app.loseScreen:
         loseScreen.drawLoseScreen(app)
     
 #----------------Controller Class--------------------------------
 def onStep(app):
     if app.mainScreen:
-        if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
+        if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None and len(app.inputCharacters) != 0:
             app.secondsLeft = int(app.secondsLeft) - 1
 
 def onMouseMove(app, mouseX, mouseY):
@@ -86,6 +97,11 @@ def onMousePress(app, mouseX, mouseY):
         bounds = app.width//2 - app.restartIconWidth, app.height - 175, app.restartIconWidth, app.restartIconWidth
         if button.Button.buttonBounds(mouseX, mouseY, bounds):
             reset(app)
+
+def onKeyPress(app, key):
+    if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
+        #Only once typing mode is activated, typing will trigger the start of the timer 
+        app.inputCharacters.append(key)
 
 #-------------------------------------------------------------------------------
 #Opening Images
