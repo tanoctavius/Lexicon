@@ -48,9 +48,6 @@ def onAppStart(app):
     app.optionsLabelStartingPoint = 240 + 120//2
     app.optionsLabelYStartingPoint = 175
 
-    #Initialising InfoScreen Titles:
-    app.infoScreenMainTitle = button.Label("i n f o r m a t i o n", (app.width//2, 200), 35, 'impact', rgb(181, 94, 83), 'center', True)
-
     reset(app)
 
 def reset(app):
