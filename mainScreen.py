@@ -99,3 +99,23 @@ def onMousePressLightUp(app, mouseX, mouseY):
         optionsPressIndex = temp
         if optionsPressIndex != None: 
             app.selectedLabelRectIndex = optionsPressIndex
+
+def onMousePressIcon(app, mouseX, mouseY):
+    mainScreenBounds = 275, 93, 30, 20
+    if button.Button.buttonBounds(mouseX, mouseY, mainScreenBounds):
+        app.mainScreen = True
+
+    infoScreenBounds = 355, 93, 20, 20
+    if button.Button.buttonBounds(mouseX, mouseY, infoScreenBounds):
+        app.infoScreen = True
+        app.mainScreen = False 
+
+    settingBounds = 320, 93, 20, 20
+    if button.Button.buttonBounds(mouseX, mouseY, settingBounds):
+        app.settingScreen = True
+        app.mainScreen = False 
+
+    leaderboardBounds = 390, 93, 20, 20
+    if button.Button.buttonBounds(mouseX, mouseY, leaderboardBounds):
+        app.leaderboardScreen = True 
+        app.mainScreen = False 

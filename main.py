@@ -3,6 +3,9 @@ from PIL import Image
 import button
 import mainScreen
 import loseScreen
+import settingScreen
+import infoScreen
+import leaderboardScreen 
 
 #----------------Model Class--------------------------------
 def onAppStart(app):
@@ -45,6 +48,9 @@ def onAppStart(app):
     app.optionsLabelStartingPoint = 240 + 120//2
     app.optionsLabelYStartingPoint = 175
 
+    #Initialising InfoScreen Titles:
+    app.infoScreenMainTitle = button.Label("i n f o r m a t i o n", (app.width//2, 200), 35, 'impact', rgb(181, 94, 83), 'center', True)
+
     reset(app)
 
 def reset(app):
@@ -81,6 +87,15 @@ def redrawAll(app):
 
     if app.loseScreen:
         loseScreen.drawLoseScreen(app)
+
+    if app.infoScreen:
+        infoScreen.drawInfoScreen(app)
+
+    if app.settingScreen:
+        settingScreen.drawSettingScreen(app)
+    
+    if app.leaderboardScreen:
+        leaderboardScreen.drawLeaderboardScreen(app)
     
 #----------------Controller Class--------------------------------
 def onStep(app):
@@ -95,28 +110,21 @@ def onMouseMove(app, mouseX, mouseY):
 def onMousePress(app, mouseX, mouseY):
     if app.mainScreen:
         mainScreen.onMousePressLightUp(app, mouseX, mouseY)
+        mainScreen.onMousePressIcon(app, mouseX, mouseY)
         
         #If restart icon is selected, app is restarted
         restartBounds = app.width//2 - app.restartIconWidth, app.height - 175, app.restartIconWidth, app.restartIconWidth
         if button.Button.buttonBounds(mouseX, mouseY, restartBounds):
             reset(app)
-
-        mainScreenBounds = 275, 93, 30, 20
-        if button.Button.buttonBounds(mouseX, mouseY, mainScreenBounds):
-            app.mainScreen = True
-
-        infoScreenBounds = 335, 93, 20, 20
-        if button.Button.buttonBounds(mouseX, mouseY, infoScreenBounds):
-            app.infoScreen = True
-
-        settingBounds = 320, 93, 20, 20
-        if button.Button.buttonBounds(mouseX, mouseY, settingBounds):
-            app.settingScreen = True
-
-        leaderboardBounds = 390, 93, 20, 20
-        if button.Button.buttonBounds(mouseX, mouseY, leaderboardBounds):
-            app.leaderboardScreen = True 
-        
+    
+    if app.leaderboardScreen:
+        leaderboardScreen.onMousePressIcon(app, mouseX, mouseY)
+    
+    if app.settingScreen:
+        settingScreen.onMousePressIcon(app, mouseX, mouseY)
+    
+    if app.infoScreen:
+        infoScreen.onMousePressIcon(app, mouseX, mouseY)
 
 def onKeyPress(app, key):
     if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
