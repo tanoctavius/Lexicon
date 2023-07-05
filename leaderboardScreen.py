@@ -1,6 +1,34 @@
 from cmu_graphics import *
 import button
 
+def drawFinalHighScoreScreen(app):
+    #Draws the titles for the high score screen 
+    organisedList = getOrganisedListOfHighScores(app)
+    drawLabel('Rank', app.width//2 - 135, app.yTopCord, font = app.highScoreFont, size = app.startScreenSize)
+    drawLabel('Score', app.width//2 - 20, app.yTopCord, font = app.highScoreFont, size = app.startScreenSize)
+    drawLabel('Time', app.width//2 + 110, app.yTopCord, font = app.highScoreFont, size = app.startScreenSize)
+    
+    #Draws all the scores stored
+    for i in range(len(organisedList)):
+        score, time = organisedList[i]
+        drawLabel(f'{i + 1}.', app.width//2 - 110, app.yTopCord + (i+1)*45, font = app.highScoreFont, size = app.startScreenSize)
+        drawLabel(f'{score}', app.width//2 - 24, app.yTopCord + (i+1)*45, font = app.highScoreFont, size = app.startScreenSize)
+        drawLabel(f'{time}', app.width//2 + 115, app.yTopCord + (i+1)*45, font = app.highScoreFont, size = app.startScreenSize)
+
+def getOrganisedListOfHighScores(app):
+    result = []
+    resultSet = set()
+    resultDict = dict()
+    for scores in range(len(app.allScores)):
+        percentage, time = app.allScores[scores]
+        resultSet.add(percentage)
+        resultDict[percentage] = time 
+    sortedDict = (sorted(resultSet))[::-1]
+    for i in range(len(sortedDict)):
+        time = resultDict[sortedDict[i]]
+        result.append((sortedDict[i], time))
+    return result
+
 def drawLeaderboardScreen(app):
     #Initialise the background:
     drawRect(0, 0, app.width, app.height, fill = rgb(70, 75, 80))

@@ -67,8 +67,6 @@ def drawInfoScreenInformation(app):
     drawLabel('LinkedIn: https://www.linkedin.com/in/octaviusetetanzhylam/', 
               187, 721, size = 16, font = 'Courier New', fill = "white", align = "left", bold = False)
     
-
-
 def onMousePressIcon(app, mouseX, mouseY):
     mainScreenBounds = 275, 93, 30, 20
     if button.Button.buttonBounds(mouseX, mouseY, mainScreenBounds):

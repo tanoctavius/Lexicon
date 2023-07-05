@@ -48,6 +48,9 @@ def onAppStart(app):
     app.optionsLabelStartingPoint = 240 + 120//2
     app.optionsLabelYStartingPoint = 175
 
+    #Initialising list of all previous scores:
+    app.allScores = []
+
     reset(app)
 
 def reset(app):
