@@ -14,12 +14,8 @@ def onAppStart(app):
     app.height = 800
 
     #Initialising the screen:
-    app.loseScreen = False
-    app.mainScreen = False
-    app.leaderboardScreen = False
-    app.settingScreen = False
-    app.infoScreen = False
-
+    app.mainScreen = True
+    
     #Initialising Typing Text | Main Page:
     app.currText = "None"
     app.currTextColour = "Grey"
@@ -51,12 +47,22 @@ def onAppStart(app):
     #Initialising list of all previous scores:
     app.allScores = []
 
+    #Initialising underpage items:
+    app.GitHubIcon = Image.open('images/GitHubIcon.png')
+    app.GitHubIcon = CMUImage(app.GitHubIcon)
+    app.linkedInIcon = Image.open('images/LinkedInIcon.png')
+    app.linkedInIcon = Image.open('images/LinkedInIcon.png')
+
     reset(app)
 
 def reset(app):
     '''Screens:'''
-    app.mainScreen = False  
-    app.loseScreen = True  
+    app.mainScreen = True  
+    app.loseScreen = False  
+    app.leaderboardScreen = False
+    app.settingScreen = False
+    app.loseScreen = False
+    app.infoScreen = False
     
     '''Time Variables:'''
     app.stepsPerSecond = 1
@@ -140,6 +146,12 @@ def onMousePress(app, mouseX, mouseY):
     
     if app.loseScreen:
         loseScreen.onMousePressIcon(app, mouseX, mouseY)
+
+        #If restart icon is selected, app is restarted
+        restartBounds = app.width//2 - app.restartIconWidth, app.height - 175, app.restartIconWidth, app.restartIconWidth
+        if button.Button.buttonBounds(mouseX, mouseY, restartBounds):
+            reset(app)
+
 
 def onKeyPress(app, key):
     if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:

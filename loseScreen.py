@@ -2,27 +2,28 @@ from cmu_graphics import *
 import button
 
 def drawLoseScreenStatistics(app):
-    drawLabel('wpm', 95, 200, size = 30, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
-    drawLabel(f'{app.wpm}', 95, 255, size = 70, font = 'impact', align = 'left', fill = rgb(228, 112, 61))
-    drawLabel('final %', 95, 325, size = 30, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
-    drawLabel(f'{app.finalPercentage}', 95, 380, size = 70, font = 'impact', align = 'left', fill = rgb(228, 112, 61))
-    drawLabel('accuracy', 95, 445, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
-    drawLabel(f'{app.accuracy}%', 95, 475, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
-    drawLabel('raw Wpm', 310, 445, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
-    drawLabel(f'{app.rawWpm}', 310, 475, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
-    drawLabel('time', 540, 445, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
-    drawLabel(f'{app.timeSelected}', 540, 475, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
-    drawLabel('mode', 760, 445, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
-    drawLabel(f'{app.modeSelected}', 760, 475, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
-    drawLabel('characters', 1000, 445, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
-    drawLabel(f'{app.numberOfChar}', 1000, 475, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
+    #Drawing the statistics after completion 
+    drawLabel('wpm', 95, 220, size = 30, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.wpm}', 95, 275, size = 70, font = 'impact', align = 'left', fill = rgb(228, 112, 61))
+    drawLabel('final %', 95, 345, size = 30, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.finalPercentage}', 95, 400, size = 70, font = 'impact', align = 'left', fill = rgb(228, 112, 61))
+    drawLabel('accuracy', 95, 465, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.accuracy}%', 95, 495, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
+    drawLabel('raw Wpm', 310, 465, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.rawWpm}', 310, 495, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
+    drawLabel('time', 540, 465, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.timeSelected}', 540, 495, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
+    drawLabel('mode', 760, 465, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.modeSelected}', 760, 495, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
+    drawLabel('characters', 1000, 465, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.numberOfChar}', 1000, 495, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
 
     #Graph Details:
     # drawRect(200, 185, 905, 230)
-    drawLabel('Words Per Minute (wpm)', 215, 280, size = 16, font = 'impact', rotateAngle = 270, fill = rgb(150, 150, 150), align = 'center')
-    drawLabel('Time (s)', 652.5, 400, size = 16, font = 'impact', fill = rgb(150, 150, 150))
-    drawLine(260, 185, 260, 370, fill = rgb(150, 150, 150))
-    drawLine(260, 370, 1105, 370, fill = rgb(150, 150, 150))
+    drawLabel('Words Per Minute (wpm)', 215, 300, size = 16, font = 'impact', rotateAngle = 270, fill = rgb(150, 150, 150), align = 'center')
+    drawLabel('Time (s)', 652.5, 420, size = 16, font = 'impact', fill = rgb(150, 150, 150))
+    drawLine(260, 205, 260, 390, fill = rgb(150, 150, 150))
+    drawLine(260, 390, 1105, 390, fill = rgb(150, 150, 150))
 
 def drawLoseScreen(app):
     #Initialise the background:
@@ -38,6 +39,9 @@ def drawLoseScreen(app):
     drawImage(app.settingIcon, 320, 93, width = 20, height = 20)
     drawImage(app.infoIcon, 355, 93, width = 20, height = 20)
     drawImage(app.crownIcon, 390, 93, width = 20, height = 20)
+
+    #Drawing the restart sign
+    drawImage(app.restartIcon, app.width//2 - app.restartIconWidth, app.height - 175, width = app.restartIconWidth, height = app.restartIconWidth)
 
     drawLoseScreenStatistics(app)
 
