@@ -80,8 +80,8 @@ def reset(app):
     app.finalPercentage = 0
     app.accuracy = 0
     app.numberOfChar = 0
-    app.timeSelected = 0
-    app.modeSelected = ""
+    app.timeSelected = "None"
+    app.modeSelected = "None"
 
 #----------------View Class--------------------------------
 def redrawAll(app):

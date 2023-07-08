@@ -8,12 +8,21 @@ def drawLoseScreenStatistics(app):
     drawLabel(f'{app.finalPercentage}', 95, 380, size = 70, font = 'impact', align = 'left', fill = rgb(228, 112, 61))
     drawLabel('accuracy', 95, 445, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
     drawLabel(f'{app.accuracy}%', 95, 475, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
+    drawLabel('raw Wpm', 310, 445, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.rawWpm}', 310, 475, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
+    drawLabel('time', 540, 445, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.timeSelected}', 540, 475, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
+    drawLabel('mode', 760, 445, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.modeSelected}', 760, 475, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
+    drawLabel('characters', 1000, 445, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.numberOfChar}', 1000, 475, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
 
     #Graph Details:
-    drawRect(200, 185, 905, 230)
-    drawLabel('Words Per Minute (wpm)', 215, 295, size = 16, font = 'impact', rotateAngle = 270, fill = rgb(150, 150, 150), align = 'center')
+    # drawRect(200, 185, 905, 230)
+    drawLabel('Words Per Minute (wpm)', 215, 280, size = 16, font = 'impact', rotateAngle = 270, fill = rgb(150, 150, 150), align = 'center')
     drawLabel('Time (s)', 652.5, 400, size = 16, font = 'impact', fill = rgb(150, 150, 150))
-    
+    drawLine(260, 185, 260, 370, fill = rgb(150, 150, 150))
+    drawLine(260, 370, 1105, 370, fill = rgb(150, 150, 150))
 
 def drawLoseScreen(app):
     #Initialise the background:
