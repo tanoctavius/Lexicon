@@ -15,7 +15,7 @@ def onAppStart(app):
 
     #Initialising the screen:
     app.loseScreen = False
-    app.mainScreen = True
+    app.mainScreen = False
     app.leaderboardScreen = False
     app.settingScreen = False
     app.infoScreen = False
@@ -55,8 +55,8 @@ def onAppStart(app):
 
 def reset(app):
     '''Screens:'''
-    app.mainScreen = True
-    app.loseScreen = False 
+    app.mainScreen = False  
+    app.loseScreen = True  
     
     '''Time Variables:'''
     app.stepsPerSecond = 1
@@ -73,6 +73,14 @@ def reset(app):
     app.selectedTimeRectIndex = None
     app.selectedLabelRectIndex = None
     app.hoverLabelRectIndex = None
+
+    '''Final Statistics:'''
+    app.wpm = 0
+    app.rawWpm = 0
+    app.finalPercentage = 0
+    app.numberOfChar = 0
+    app.timeSelected = 0
+    app.modeSelected = ""
 
 #----------------View Class--------------------------------
 def redrawAll(app):
@@ -102,6 +110,9 @@ def onStep(app):
     if app.mainScreen:
         if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None and len(app.inputCharacters) != 0:
             app.secondsLeft = int(app.secondsLeft) - 1
+            if app.secondsLeft == 0:
+                app.loseScreen = True
+                app.mainScreen = False 
 
 def onMouseMove(app, mouseX, mouseY):
     if app.mainScreen:
@@ -125,6 +136,9 @@ def onMousePress(app, mouseX, mouseY):
     
     if app.infoScreen:
         infoScreen.onMousePressIcon(app, mouseX, mouseY)
+    
+    if app.loseScreen:
+        loseScreen.onMousePressIcon(app, mouseX, mouseY)
 
 def onKeyPress(app, key):
     if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
