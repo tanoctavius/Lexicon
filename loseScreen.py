@@ -6,6 +6,8 @@ def drawLoseScreenStatistics(app):
     drawLabel(f'{app.wpm}', 95, 255, size = 70, font = 'impact', align = 'left', fill = rgb(228, 112, 61))
     drawLabel('final %', 95, 325, size = 30, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
     drawLabel(f'{app.finalPercentage}', 95, 380, size = 70, font = 'impact', align = 'left', fill = rgb(228, 112, 61))
+    drawLabel('accuracy', 95, 445, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
+    drawLabel(f'{app.accuracy}%', 95, 475, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
 
     #Graph Details:
     drawRect(200, 185, 905, 230)

@@ -78,6 +78,7 @@ def reset(app):
     app.wpm = 0
     app.rawWpm = 0
     app.finalPercentage = 0
+    app.accuracy = 0
     app.numberOfChar = 0
     app.timeSelected = 0
     app.modeSelected = ""
