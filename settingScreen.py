@@ -2,6 +2,11 @@ from cmu_graphics import *
 import button
 import webbrowser
 
+def drawSettingScreenOptions(app):
+    drawLabel('settings:', 160, 160, fill = rgb(228, 112, 61), size = 25, font = 'impact', align = 'left')
+    drawLabel('TEST DIFFICULTY', 160, 190, fill = rgb(150, 150, 150), size = 16, font = 'impact', align = 'left')
+    drawLabel('There are 3 levels, easy has common words and punctuation', 160, 210, align = 'left', fill = 'white', size = 16, font = 'impact')
+
 def drawSettingScreen(app):
     #Initialise the background:
     drawRect(0, 0, app.width, app.height, fill = rgb(70, 75, 80))

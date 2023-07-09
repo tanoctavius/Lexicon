@@ -15,7 +15,7 @@ def onAppStart(app):
     app.height = 800
 
     #Initialising the screen:
-    app.mainScreen = True
+    app.mainScreen = False
     
     #Initialising Typing Text | Main Page:
     app.currText = "None"
@@ -63,7 +63,7 @@ def reset(app):
     app.mainScreen = True  
     app.loseScreen = False  
     app.leaderboardScreen = False
-    app.settingScreen = False
+    app.settingScreen = True
     app.loseScreen = False
     app.infoScreen = False
     
@@ -111,6 +111,7 @@ def redrawAll(app):
 
     if app.settingScreen:
         settingScreen.drawSettingScreen(app)
+        settingScreen.drawSettingScreenOptions(app)
     
     if app.leaderboardScreen:
         leaderboardScreen.drawLeaderboardScreen(app)
