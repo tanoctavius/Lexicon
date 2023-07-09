@@ -1,5 +1,6 @@
 from cmu_graphics import *
 import button
+import webbrowser
 
 def drawInfoScreen(app):
     #Initialise the background:
@@ -18,6 +19,11 @@ def drawInfoScreen(app):
 
     #Drawing all fo the information:
     drawInfoScreenInformation(app)
+
+    #Drawing the bottom titles:
+    drawImage(app.linkedInIcon, app.bottomTierIconStartingX, 760, width = app.bottomTierIconDimensions, height = app.bottomTierIconDimensions)
+    drawImage(app.GitHubIcon, app.bottomTierIconStartingX + 30, 760, width = app.bottomTierIconDimensions, height = app.bottomTierIconDimensions)
+    drawLabel('lexicon_tanoctavius', 590, 770, font = 'impact', size = 15, align = 'left', fill = 'white')
 
 def drawInfoScreenInformation(app):
     drawLabel('a b o u t', 157, 170, size = 28, font = 'impact', fill = rgb(181, 94, 73), align = "left")
@@ -64,8 +70,6 @@ def drawInfoScreenInformation(app):
               157, 681, size = 16, font = 'Courier New', fill = "white", align = "left", bold = False)
     drawLabel('Email: tanoctavius@gmail.com', 
               187, 701, size = 16, font = 'Courier New', fill = "white", align = "left", bold = False)
-    drawLabel('LinkedIn: https://www.linkedin.com/in/octaviusetetanzhylam/', 
-              187, 721, size = 16, font = 'Courier New', fill = "white", align = "left", bold = False)
     
 def onMousePressIcon(app, mouseX, mouseY):
     mainScreenBounds = 275, 93, 30, 20
@@ -86,3 +90,11 @@ def onMousePressIcon(app, mouseX, mouseY):
     if button.Button.buttonBounds(mouseX, mouseY, leaderboardBounds):
         app.leaderboardScreen = True 
         app.infoScreen = False 
+
+    gitHubIconBounds = app.bottomTierIconStartingX + 30, 760, app.bottomTierIconDimensions, app.bottomTierIconDimensions
+    if button.Button.buttonBounds(mouseX, mouseY, gitHubIconBounds):
+        webbrowser.open("https://github.com/tanoctavius/Lexicon")
+    
+    linkedInIconBounds = app.bottomTierIconStartingX, 760, app.bottomTierIconDimensions, app.bottomTierIconDimensions
+    if button.Button.buttonBounds(mouseX, mouseY, linkedInIconBounds):
+        webbrowser.open("https://www.linkedin.com/in/octaviusetetanzhylam/")

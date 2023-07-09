@@ -1,5 +1,6 @@
 from cmu_graphics import *
 from PIL import Image
+import webbrowser
 import button
 import mainScreen
 import loseScreen
@@ -51,7 +52,9 @@ def onAppStart(app):
     app.GitHubIcon = Image.open('images/GitHubIcon.png')
     app.GitHubIcon = CMUImage(app.GitHubIcon)
     app.linkedInIcon = Image.open('images/LinkedInIcon.png')
-    app.linkedInIcon = Image.open('images/LinkedInIcon.png')
+    app.linkedInIcon = CMUImage(app.linkedInIcon)
+    app.bottomTierIconStartingX = 530
+    app.bottomTierIconDimensions = 20
 
     reset(app)
 

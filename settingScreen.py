@@ -1,5 +1,6 @@
 from cmu_graphics import *
 import button
+import webbrowser
 
 def drawSettingScreen(app):
     #Initialise the background:
@@ -15,6 +16,11 @@ def drawSettingScreen(app):
     drawImage(app.settingIcon, 320, 93, width = 20, height = 20)
     drawImage(app.infoIcon, 355, 93, width = 20, height = 20)
     drawImage(app.crownIcon, 390, 93, width = 20, height = 20)
+
+    #Drawing the bottom titles:
+    drawImage(app.linkedInIcon, app.bottomTierIconStartingX, 760, width = app.bottomTierIconDimensions, height = app.bottomTierIconDimensions)
+    drawImage(app.GitHubIcon, app.bottomTierIconStartingX + 30, 760, width = app.bottomTierIconDimensions, height = app.bottomTierIconDimensions)
+    drawLabel('lexicon_tanoctavius', 590, 770, font = 'impact', size = 15, align = 'left', fill = 'white')
 
 def onMousePressIcon(app, mouseX, mouseY):
     mainScreenBounds = 275, 93, 30, 20
@@ -35,3 +41,11 @@ def onMousePressIcon(app, mouseX, mouseY):
     if button.Button.buttonBounds(mouseX, mouseY, leaderboardBounds):
         app.leaderboardScreen = True 
         app.settingScreen = False 
+    
+    gitHubIconBounds = app.bottomTierIconStartingX + 30, 760, app.bottomTierIconDimensions, app.bottomTierIconDimensions
+    if button.Button.buttonBounds(mouseX, mouseY, gitHubIconBounds):
+        webbrowser.open("https://github.com/tanoctavius/Lexicon")
+    
+    linkedInIconBounds = app.bottomTierIconStartingX, 760, app.bottomTierIconDimensions, app.bottomTierIconDimensions
+    if button.Button.buttonBounds(mouseX, mouseY, linkedInIconBounds):
+        webbrowser.open("https://www.linkedin.com/in/octaviusetetanzhylam/")

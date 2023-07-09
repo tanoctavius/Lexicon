@@ -1,5 +1,6 @@
 from cmu_graphics import *
 import button
+import webbrowser
 
 def drawMainScreen(app):
     #Initialise the background:
@@ -20,7 +21,11 @@ def drawMainScreen(app):
     #Can start to type if both time and option is selected
     if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
         drawLabel(f'{app.secondsLeft}', app.width//2, app.timeLabelYStartingPoint - 100, font = 'impact', size = 30, align = 'center', fill = rgb(228, 112, 61))
-        
+    
+    #Drawing the bottom titles:
+    drawImage(app.linkedInIcon, app.bottomTierIconStartingX, 760, width = app.bottomTierIconDimensions, height = app.bottomTierIconDimensions)
+    drawImage(app.GitHubIcon, app.bottomTierIconStartingX + 30, 760, width = app.bottomTierIconDimensions, height = app.bottomTierIconDimensions)
+    drawLabel('lexicon_tanoctavius', 590, 770, font = 'impact', size = 15, align = 'left', fill = 'white')
 
 def drawRectangleCircleOptions(app):
     #Draws the first rectangle + options
@@ -119,3 +124,12 @@ def onMousePressIcon(app, mouseX, mouseY):
     if button.Button.buttonBounds(mouseX, mouseY, leaderboardBounds):
         app.leaderboardScreen = True 
         app.mainScreen = False 
+    
+    gitHubIconBounds = app.bottomTierIconStartingX + 30, 760, app.bottomTierIconDimensions, app.bottomTierIconDimensions
+    if button.Button.buttonBounds(mouseX, mouseY, gitHubIconBounds):
+        webbrowser.open("https://github.com/tanoctavius/Lexicon")
+    
+    linkedInIconBounds = app.bottomTierIconStartingX, 760, app.bottomTierIconDimensions, app.bottomTierIconDimensions
+    if button.Button.buttonBounds(mouseX, mouseY, linkedInIconBounds):
+        webbrowser.open("https://www.linkedin.com/in/octaviusetetanzhylam/")
+
