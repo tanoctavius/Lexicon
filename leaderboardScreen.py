@@ -5,9 +5,17 @@ import webbrowser
 def drawFinalHighScoreScreen(app):
     #Draws the titles for the high score screen 
     organisedList = getOrganisedListOfHighScores(app)
-    drawLabel('Rank', app.width//2 - 135, app.yTopCord, font = app.highScoreFont, size = app.startScreenSize)
-    drawLabel('Score', app.width//2 - 20, app.yTopCord, font = app.highScoreFont, size = app.startScreenSize)
-    drawLabel('Time', app.width//2 + 110, app.yTopCord, font = app.highScoreFont, size = app.startScreenSize)
+    leaderboardFont = 'impact'
+    leaderboardTitleSize = 24
+    leaderboardYCoord = 200
+    colour = rgb(228, 112, 61)
+    drawLabel('Rank', 200, leaderboardYCoord, font = leaderboardFont, size = leaderboardTitleSize, fill = colour, align = 'left')
+    drawLabel('Score', 300, leaderboardYCoord, font = leaderboardFont, size = leaderboardTitleSize, fill = colour, align = 'left')
+    drawLabel('Wpm', 450, leaderboardYCoord, font = leaderboardFont, size = leaderboardTitleSize, fill = colour, align = 'left')
+    drawLabel('Time; Mode', 600, leaderboardYCoord, font = leaderboardFont, size = leaderboardTitleSize, fill = colour, align = 'left')
+    drawLabel('accur.', 875, leaderboardYCoord, font = leaderboardFont, size = leaderboardTitleSize, fill = colour, align = 'left')
+    drawLabel('char.', 975, leaderboardYCoord, font = leaderboardFont, size = leaderboardTitleSize, fill = colour, align = 'left')
+    drawLine(180, 240, 1050, 240, fill = rgb(150, 75, 45), lineWidth = 5)
     
     #Draws all the scores stored
     for i in range(len(organisedList)):
@@ -34,7 +42,6 @@ def drawLeaderboardScreen(app):
     #Initialise the background:
     drawRect(0, 0, app.width, app.height, fill = rgb(70, 75, 80))
     drawImage(app.keyboardIcon, 95, 80, width = 50, height = 30)
-    drawRect(300, 300, 200, 200)
     
     #Initialising the titles:
     button.Label.drawLabel(app.mainPageTitle)

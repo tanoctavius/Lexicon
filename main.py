@@ -59,7 +59,7 @@ def reset(app):
     '''Screens:'''
     app.mainScreen = True  
     app.loseScreen = False  
-    app.leaderboardScreen = False
+    app.leaderboardScreen = True
     app.settingScreen = False
     app.loseScreen = False
     app.infoScreen = False
@@ -120,6 +120,7 @@ def redrawAll(app):
     
     if app.leaderboardScreen:
         leaderboardScreen.drawLeaderboardScreen(app)
+        leaderboardScreen.drawFinalHighScoreScreen(app)
     
 #----------------Controller Class--------------------------------
 def onStep(app):
@@ -162,7 +163,6 @@ def onMousePress(app, mouseX, mouseY):
         restartBounds = app.width//2 - app.restartIconWidth, app.height - 175, app.restartIconWidth, app.restartIconWidth
         if button.Button.buttonBounds(mouseX, mouseY, restartBounds):
             reset(app)
-
 
 def onKeyPress(app, key):
     if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
