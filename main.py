@@ -13,9 +13,6 @@ def onAppStart(app):
     #Initialising the size of the canvas:
     app.width = 1200
     app.height = 800
-
-    #Initialising the screen:
-    app.mainScreen = False
     
     #Initialising Typing Text | Main Page:
     app.currText = "None"
@@ -63,7 +60,7 @@ def reset(app):
     app.mainScreen = True  
     app.loseScreen = False  
     app.leaderboardScreen = False
-    app.settingScreen = True
+    app.settingScreen = False
     app.loseScreen = False
     app.infoScreen = False
     
@@ -128,7 +125,9 @@ def redrawAll(app):
 def onStep(app):
     if app.mainScreen:
         if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None and len(app.inputCharacters) != 0:
-            app.secondsLeft = int(app.secondsLeft) - 1
+            app.secondsLeft = int(app.secondsLeft)
+            if app.secondsLeft > 0:    
+                app.secondsLeft = int(app.secondsLeft) - 1
             if app.secondsLeft == 0:
                 app.loseScreen = True
                 app.mainScreen = False 
