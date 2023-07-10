@@ -91,6 +91,16 @@ def drawSettingScreen(app):
     drawLabel('lexicon_tanoctavius', 590, 770, font = 'impact', size = 15, align = 'left', fill = 'white')
 
 def onMousePressIcon(app, mouseX, mouseY):
+    easyButtonBounds = 700, 160, 93, 40
+    mediumButtonBounds = 823, 160, 93, 40
+    hardButtonBounds = 946, 160, 93, 40
+    if button.Button.buttonBounds(mouseX, mouseY, easyButtonBounds):
+        app.testDifficulty = "easy"
+    if button.Button.buttonBounds(mouseX, mouseY, mediumButtonBounds):
+        app.testDifficulty = "medium"
+    if button.Button.buttonBounds(mouseX, mouseY, hardButtonBounds):
+        app.testDifficulty = "hard"
+
     blindModeBoundsFalse = 700, 255, 150, 40
     if button.Button.buttonBounds(mouseX, mouseY, blindModeBoundsFalse):
         app.blindMode = False 
