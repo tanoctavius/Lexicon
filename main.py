@@ -92,6 +92,14 @@ def reset(app):
     app.timeSelected = "None"
     app.modeSelected = "None"
 
+    '''Setting Selections:'''
+    app.testDifficulty = "medium"
+    app.blindMode = False
+    app.quickRestart = False
+    app.flipColours = False
+    app.showTimer = True
+    app.showCapsLockWarning = True 
+
 #----------------View Class--------------------------------
 def redrawAll(app):
     if app.mainScreen:
