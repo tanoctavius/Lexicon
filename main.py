@@ -7,6 +7,7 @@ import loseScreen
 import settingScreen
 import infoScreen
 import leaderboardScreen 
+import scoreCalculation
 
 #----------------Model Class--------------------------------
 def onAppStart(app):
