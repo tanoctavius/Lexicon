@@ -16,26 +16,36 @@ def drawFinalHighScoreScreen(app):
     drawLabel('char.', 975, leaderboardYCoord, font = leaderboardFont, size = leaderboardTitleSize, fill = colour, align = 'left')
     drawLine(180, 230, 1050, 230, fill = rgb(150, 75, 45), lineWidth = 5)
     
-#     #Draws all the scores stored
-#     for i in range(len(organisedList)):
-#         score, time = organisedList[i]
-#         drawLabel(f'{i + 1}.', app.width//2 - 110, app.yTopCord + (i+1)*45, font = app.highScoreFont, size = app.startScreenSize)
-#         drawLabel(f'{score}', app.width//2 - 24, app.yTopCord + (i+1)*45, font = app.highScoreFont, size = app.startScreenSize)
-#         drawLabel(f'{time}', app.width//2 + 115, app.yTopCord + (i+1)*45, font = app.highScoreFont, size = app.startScreenSize)
-
-# def getOrganisedListOfHighScores(app):
-#     result = []
-#     resultSet = set()
-#     resultDict = dict()
-#     for scores in range(len(app.allScores)):
-#         percentage, time = app.allScores[scores]
-#         resultSet.add(percentage)
-#         resultDict[percentage] = time 
-#     sortedDict = (sorted(resultSet))[::-1]
-#     for i in range(len(sortedDict)):
-#         time = resultDict[sortedDict[i]]
-#         result.append((sortedDict[i], time))
-#     return result
+    #Draws all the scores stored
+    finalScoreList = app.allScores
+    organisedList = getOrganisedListOfHighScores(finalScoreList)
+    highScoreFont = 'impact'
+    highScoreSize = 20
+    highScoreYCord = 205
+    highScoreIncreaseSize = 50
+    for i in range((len(app.allScores))):
+        score, wpm, time, mode, accuracy, character = organisedList[i]
+        drawLabel(f'{i+1}', 220, highScoreYCord + (i + 1) * highScoreIncreaseSize, font = highScoreFont, size = highScoreSize, align = 'center', fill = "white")
+        drawLabel(f'{score}', 320, highScoreYCord + (i + 1) * highScoreIncreaseSize, font = highScoreFont, size = highScoreSize, align = 'center', fill = "white")
+        drawLabel(f'{wpm}', 470, highScoreYCord + (i + 1) * highScoreIncreaseSize, font = highScoreFont, size = highScoreSize, align = 'center', fill = "white")
+        drawLabel(f'{time}; {mode}', 650, highScoreYCord + (i + 1) * highScoreIncreaseSize, font = highScoreFont, size = highScoreSize, align = 'center', fill = "white")
+        drawLabel(f'{accuracy}', 900, highScoreYCord + (i + 1) * highScoreIncreaseSize, font = highScoreFont, size = highScoreSize, align = 'center', fill = "white")
+        drawLabel(f'{character}', 1000, highScoreYCord + (i + 1) * highScoreIncreaseSize, font = highScoreFont, size = highScoreSize, align = 'center', fill = "white")
+        drawLine(180, 230 + (i+1) * 50, 1050, 230 + (i+1) * 50, lineWidth = 3, fill = rgb(75, 50, 30))
+    
+def getOrganisedListOfHighScores(finalScoreList):
+    result = []
+    resultSet = set()
+    resultDict = {}
+    for object in range(len(finalScoreList)):
+        score, wpm, time, mode, accuracy, character = finalScoreList[object]
+        resultSet.add(score)
+        resultDict[score] = wpm, time, mode, accuracy, character
+    sortedDict = (sorted(resultSet))[::-1]
+    for i in range(len(sortedDict)):
+        wpm, time, mode, accuracy, character = resultDict[sortedDict[i]]
+        result.append((sortedDict[i], wpm, time, mode, accuracy, character))
+    return result 
 
 def drawLeaderboardScreen(app):
     #Initialise the background:

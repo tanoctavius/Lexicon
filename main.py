@@ -57,7 +57,7 @@ def onAppStart(app):
 
 def reset(app):
     '''Screens:'''
-    app.mainScreen = True  
+    app.mainScreen = False  
     app.loseScreen = False  
     app.leaderboardScreen = True
     app.settingScreen = False
@@ -81,11 +81,11 @@ def reset(app):
     app.hoverLabelRectIndex = None
 
     '''Final Statistics:'''
+    app.score = 0
     app.wpm = 0
     app.rawWpm = 0
     app.finalPercentage = 0
     app.accuracy = 0
-    app.numberOfChar = 0
     app.timeSelected = "None"
     app.modeSelected = "None"
 
@@ -132,6 +132,9 @@ def onStep(app):
             if app.secondsLeft == 0:
                 app.loseScreen = True
                 app.mainScreen = False 
+
+                #Inputing the final score after losing:
+                app.allScores.append((app.score, app.wpm, app.timeSelected, app.modeSelected, app.accuracy, len(app.inputCharacters)))
 
 def onMouseMove(app, mouseX, mouseY):
     if app.mainScreen:
