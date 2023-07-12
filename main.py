@@ -8,6 +8,7 @@ import settingScreen
 import infoScreen
 import leaderboardScreen 
 import scoreCalculation
+import wordscraping
 
 #----------------Model Class--------------------------------
 def onAppStart(app):
