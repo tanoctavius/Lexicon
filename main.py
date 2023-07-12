@@ -58,9 +58,9 @@ def onAppStart(app):
 
 def reset(app):
     '''Screens:'''
-    app.mainScreen = False  
+    app.mainScreen = True  
     app.loseScreen = False  
-    app.leaderboardScreen = True
+    app.leaderboardScreen = False
     app.settingScreen = False
     app.loseScreen = False
     app.infoScreen = False
