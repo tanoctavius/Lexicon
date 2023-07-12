@@ -6,4 +6,9 @@ A typing test that calculates wpm and cpm that accounts for word difficulty. All
 Note:
 Overall aesthetic + function of the project was inspired by monkeytype.com
 
-To run the project, download all relevant files (including CMU Graphics - main module framework). Run main.py
+To run the project, download all relevant files (including CMU Graphics - main module framework). Run main.py.
+
+_____________note______________:
+Please install the following through the terminal: 
+pip install requests
+pip install beautifulsoup4
