@@ -65,6 +65,14 @@ def onAppStart(app):
     #Initialising the text:
     app.text = wordscraping.getText()
 
+    '''Setting Selections:'''
+    app.testDifficulty = "medium"
+    app.blindMode = False
+    app.quickRestart = False
+    app.flipColours = False
+    app.showTimer = True
+    app.showCapsLockWarning = True 
+
     reset(app)
 
 def reset(app):
@@ -101,14 +109,6 @@ def reset(app):
     app.accuracy = 0
     app.timeSelected = "None"
     app.modeSelected = "None"
-
-    '''Setting Selections:'''
-    app.testDifficulty = "medium"
-    app.blindMode = False
-    app.quickRestart = False
-    app.flipColours = False
-    app.showTimer = True
-    app.showCapsLockWarning = True 
 
 #----------------View Class--------------------------------
 def redrawAll(app):
@@ -184,7 +184,10 @@ def onMousePress(app, mouseX, mouseY):
 def onKeyPress(app, key):
     if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
         #Only once typing mode is activated, typing will trigger the start of the timer 
-        app.inputCharacters.append(key)
+        if key.isalpha():
+            app.inputCharacters.append(key)
+    if app.quickRestart and key == "tab":
+        reset(app)
 
 #-------------------------------------------------------------------------------
 #Opening Images

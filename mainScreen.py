@@ -20,7 +20,7 @@ def drawMainScreen(app):
     drawImage(app.crownIcon, 390, 93, width = 20, height = 20)
     
     #Can start to type if both time and option is selected
-    if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
+    if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None and app.showTimer:
         drawLabel(f'{app.secondsLeft}', app.width//2, app.timeLabelYStartingPoint - 25, font = 'impact', size = 30, align = 'center', fill = rgb(228, 112, 61))
     
     #Drawing the bottom titles:
@@ -30,7 +30,8 @@ def drawMainScreen(app):
 
 def drawTheFinalWritingText(app):
     textSize = 23
-    textColour, textFont = 'grey', 'impact'
+    textColour = 'grey'
+    textFont ='impact'
     line1, line2, line3 = wordscraping.getPresentedScreenText(app)
     drawLabel(f"{line1}", app.width//2, app.startingYLine1, size = textSize, fill = textColour, font = textFont)
     drawLabel(f"{line2}", app.width//2, app.startingYLine2, size = textSize, fill = textColour, font = textFont)
