@@ -1,6 +1,7 @@
 from cmu_graphics import *
 import button
 import webbrowser
+import wordscraping
 
 def drawMainScreen(app):
     #Initialise the background:
@@ -20,12 +21,20 @@ def drawMainScreen(app):
     
     #Can start to type if both time and option is selected
     if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
-        drawLabel(f'{app.secondsLeft}', app.width//2, app.timeLabelYStartingPoint - 100, font = 'impact', size = 30, align = 'center', fill = rgb(228, 112, 61))
+        drawLabel(f'{app.secondsLeft}', app.width//2, app.timeLabelYStartingPoint -025, font = 'impact', size = 30, align = 'center', fill = rgb(228, 112, 61))
     
     #Drawing the bottom titles:
     drawImage(app.linkedInIcon, app.bottomTierIconStartingX, 760, width = app.bottomTierIconDimensions, height = app.bottomTierIconDimensions)
     drawImage(app.GitHubIcon, app.bottomTierIconStartingX + 30, 760, width = app.bottomTierIconDimensions, height = app.bottomTierIconDimensions)
     drawLabel('lexicon_tanoctavius', 590, 770, font = 'impact', size = 15, align = 'left', fill = 'white')
+
+def drawTheFinalWritingText(app):
+    textSize = 23
+    textColour, textFont = 'grey', 'impact'
+    line1, line2, line3 = wordscraping.getPresentedScreenText(app)
+    drawLabel(f"{line1}", app.width//2, app.startingYLine1, size = textSize, fill = textColour, font = textFont)
+    drawLabel(f"{line2}", app.width//2, app.startingYLine2, size = textSize, fill = textColour, font = textFont)
+    drawLabel(f"{line3}", app.width//2, app.startingYLine3, size = textSize, fill = textColour, font = textFont)
 
 def drawRectangleCircleOptions(app):
     #Draws the first rectangle + options

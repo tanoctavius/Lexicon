@@ -1,4 +1,6 @@
 from cmu_graphics import *
+import requests
+from bs4 import BeautifulSoup
 from PIL import Image
 import webbrowser
 import button
@@ -55,6 +57,11 @@ def onAppStart(app):
     app.bottomTierIconStartingX = 530
     app.bottomTierIconDimensions = 20
 
+    #Initialising the values for drawing the text
+    app.startingYLine1 = 375
+    app.startingYLine2 = 450
+    app.startingYLine3 = 525
+
     reset(app)
 
 def reset(app):
@@ -75,6 +82,7 @@ def reset(app):
 
     '''Typing variables:'''
     app.inputCharacters = []
+    app.lastCharIndex = 0
     
     #Initialising values for hovering + pressing options and time ribbon
     app.hoverTimeRectIndex = None
@@ -109,6 +117,7 @@ def redrawAll(app):
             mainScreen.drawRectangleCircleOptions(app)
             mainScreen.timeLabelLightUp(app)
             mainScreen.optionsLabelLightUp(app)
+        mainScreen.drawTheFinalWritingText(app)
 
     if app.loseScreen:
         loseScreen.drawLoseScreen(app)
