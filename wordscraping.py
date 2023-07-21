@@ -13,7 +13,7 @@ def getText():
     return finalResult[17:]
 
 def getChosenDifficultyText():
-    finalText = getText()
+    finalText = app.text
     return finalText
 
 def getPresentedScreenText(app):
@@ -34,3 +34,4 @@ def getAdjusted60Text(completeText):
         result += (word) + " "
         if len(result) > 75: 
             return (result, len(result))
+    return

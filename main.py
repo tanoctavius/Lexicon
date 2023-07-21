@@ -62,6 +62,9 @@ def onAppStart(app):
     app.startingYLine2 = 450
     app.startingYLine3 = 525
 
+    #Initialising the text:
+    app.text = wordscraping.getText()
+
     reset(app)
 
 def reset(app):

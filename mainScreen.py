@@ -21,7 +21,7 @@ def drawMainScreen(app):
     
     #Can start to type if both time and option is selected
     if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
-        drawLabel(f'{app.secondsLeft}', app.width//2, app.timeLabelYStartingPoint -025, font = 'impact', size = 30, align = 'center', fill = rgb(228, 112, 61))
+        drawLabel(f'{app.secondsLeft}', app.width//2, app.timeLabelYStartingPoint - 25, font = 'impact', size = 30, align = 'center', fill = rgb(228, 112, 61))
     
     #Drawing the bottom titles:
     drawImage(app.linkedInIcon, app.bottomTierIconStartingX, 760, width = app.bottomTierIconDimensions, height = app.bottomTierIconDimensions)
