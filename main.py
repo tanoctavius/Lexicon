@@ -67,7 +67,7 @@ def onAppStart(app):
 
     '''Setting Selections:'''
     app.testDifficulty = "medium"
-    app.blindMode = False
+    app.blindMode = True
     app.quickRestart = False
     app.flipColours = False
     app.showTimer = True
@@ -93,7 +93,9 @@ def reset(app):
 
     '''Typing variables:'''
     app.inputCharacters = []
+    app.currCharacter = 0
     app.lastCharIndex = 0
+    app.line1, app.line2, app.line3 = wordscraping.getPresentedScreenText(app)
     
     #Initialising values for hovering + pressing options and time ribbon
     app.hoverTimeRectIndex = None
@@ -188,6 +190,16 @@ def onKeyPress(app, key):
             app.inputCharacters.append(key)
     if app.quickRestart and key == "tab":
         reset(app)
+    if app.lastCharIndex >= len(app.line1) + len(app.line2):
+        if (app.line3[app.lastCharIndex - len(app.line1) - len(app.line2)] == key or (app.line3[app.lastCharIndex - len(app.line1) - len(app.line2)] == ' ' and key == 'space')):
+            app.lastCharIndex += 1
+    elif app.lastCharIndex >= len(app.line1):
+        if (app.line2[app.lastCharIndex - len(app.line1)] == key or (app.line2[app.lastCharIndex - len(app.line1)] == ' ' and key == 'space')):
+            app.lastCharIndex += 1
+    else: 
+        if app.line1[app.lastCharIndex] == key or (app.line1[app.lastCharIndex] == ' ' and key == 'space'):
+            app.lastCharIndex += 1
+    
 
 #-------------------------------------------------------------------------------
 #Opening Images

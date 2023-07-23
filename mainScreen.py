@@ -30,12 +30,27 @@ def drawMainScreen(app):
 
 def drawTheFinalWritingText(app):
     textSize = 23
-    textColour = 'grey'
     textFont ='impact'
-    line1, line2, line3 = wordscraping.getPresentedScreenText(app)
-    drawLabel(f"{line1}", app.width//2, app.startingYLine1, size = textSize, fill = textColour, font = textFont)
-    drawLabel(f"{line2}", app.width//2, app.startingYLine2, size = textSize, fill = textColour, font = textFont)
-    drawLabel(f"{line3}", app.width//2, app.startingYLine3, size = textSize, fill = textColour, font = textFont)
+    for i in range(len(app.line1)):
+        if i < app.lastCharIndex:
+            textColour = 'white'
+        else: 
+            textColour = 'grey'
+        drawLabel(f"{app.line1[i]}", 0 + 10*i, app.startingYLine1, size = textSize, fill = textColour, font = textFont, align = 'bottom')
+
+    for i in range(len(app.line2)):
+        if i + len(app.line1) < app.lastCharIndex:
+            textColour = 'white'
+        else: 
+            textColour = 'grey'
+        drawLabel(f"{app.line2[i]}", 0 + 10*i, app.startingYLine2, size = textSize, fill = textColour, font = textFont, align = 'bottom')
+
+    for i in range(len(app.line3)):
+        if i + len(app.line1) + len(app.line2) < app.lastCharIndex:
+            textColour = 'white'
+        else: 
+            textColour = 'grey'
+        drawLabel(f"{app.line3[i]}", 0 + 10*i, app.startingYLine3, size = textSize, fill = textColour, font = textFont, align = 'bottom')
 
 def drawRectangleCircleOptions(app):
     #Draws the first rectangle + options
