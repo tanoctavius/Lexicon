@@ -32,25 +32,25 @@ def drawTheFinalWritingText(app):
     textSize = 23
     textFont ='impact'
     for i in range(len(app.line1)):
-        if i < app.lastCharIndex:
+        if i < app.lastCharIndex - app.previousLine:
             textColour = 'white'
         else: 
             textColour = 'grey'
-        drawLabel(f"{app.line1[i]}", 0 + 10*i, app.startingYLine1, size = textSize, fill = textColour, font = textFont, align = 'bottom')
+        drawLabel(f"{app.line1[i]}", (app.width - (len(app.line1) * 23//2.5))//2 + 10*i, app.startingYLine1, size = textSize, fill = textColour, font = textFont, align = 'bottom')
 
     for i in range(len(app.line2)):
-        if i + len(app.line1) < app.lastCharIndex:
+        if i + len(app.line1) < app.lastCharIndex - app.previousLine:
             textColour = 'white'
         else: 
             textColour = 'grey'
-        drawLabel(f"{app.line2[i]}", 0 + 10*i, app.startingYLine2, size = textSize, fill = textColour, font = textFont, align = 'bottom')
+        drawLabel(f"{app.line2[i]}", (app.width - (len(app.line2) * 23//2.5))//2 + 10*i, app.startingYLine2, size = textSize, fill = textColour, font = textFont, align = 'bottom')
 
     for i in range(len(app.line3)):
-        if i + len(app.line1) + len(app.line2) < app.lastCharIndex:
+        if i + len(app.line1) + len(app.line2) < app.lastCharIndex - app.previousLine:
             textColour = 'white'
         else: 
             textColour = 'grey'
-        drawLabel(f"{app.line3[i]}", 0 + 10*i, app.startingYLine3, size = textSize, fill = textColour, font = textFont, align = 'bottom')
+        drawLabel(f"{app.line3[i]}", (app.width - (len(app.line3) * 23//2.5))//2 + 10*i, app.startingYLine3, size = textSize, fill = textColour, font = textFont, align = 'bottom')
 
 def drawRectangleCircleOptions(app):
     #Draws the first rectangle + options

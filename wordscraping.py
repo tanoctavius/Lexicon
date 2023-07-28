@@ -20,7 +20,7 @@ def getPresentedScreenText(app):
     line1, line2, line3 = "", "", ""
     currIndex = app.lastCharIndex
     completeText = (getChosenDifficultyText())
-    line1, lastCharIndex = getAdjusted60Text(completeText)
+    line1, lastCharIndex = getAdjusted60Text(completeText[currIndex:])
     currIndex += lastCharIndex
     line2, newIndexAddition1 = getAdjusted60Text(completeText[currIndex:])
     currIndex += newIndexAddition1
