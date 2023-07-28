@@ -97,6 +97,7 @@ def reset(app):
     app.lastCharIndex = 0
     app.line1, app.line2, app.line3 = wordscraping.getPresentedScreenText(app)
     app.previousLine = 0
+    app.currMode = None 
     
     #Initialising values for hovering + pressing options and time ribbon
     app.hoverTimeRectIndex = None
@@ -161,6 +162,10 @@ def onMousePress(app, mouseX, mouseY):
     if app.mainScreen:
         mainScreen.onMousePressLightUp(app, mouseX, mouseY)
         mainScreen.onMousePressIcon(app, mouseX, mouseY)
+        if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None: 
+            values = ["crazyCapital", "crazyNumber", "crazySpaces", "normal", "uppercase", "mixed"]
+            app.currMode = values[app.selectedLabelRectIndex]
+            app.line1, app.line2, app.line3 = wordscraping.getPresentedScreenText(app)
         
         #If restart icon is selected, app is restarted
         restartBounds = app.width//2 - app.restartIconWidth, app.height - 175, app.restartIconWidth, app.restartIconWidth
