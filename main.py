@@ -130,6 +130,7 @@ def redrawAll(app):
 
     if app.loseScreen:
         loseScreen.drawLoseScreen(app)
+        loseScreen.drawFinalGraphStatistics(app)
 
     if app.infoScreen:
         infoScreen.drawInfoScreen(app)

@@ -67,7 +67,7 @@ def drawRectangleCircleOptions(app):
 
 #Checking whether the options label is aligned with the mouse, will light up if clicked (reddish-yellow) or hovered over (white):
 def optionsLabelLightUp(app):
-    values = ["crazyCapital", "crazyNumber", "crazySpaces", "normal", "uppercase", "mixed"]
+    values = ["crazyCapital", "crazyNumber", "crazySigns", "normal", "uppercase", "mixed"]
     for rect in range(6):
         if rect == app.selectedLabelRectIndex:
             rectFillTimeColour = rgb(228, 112, 61)
@@ -121,7 +121,7 @@ def onMousePressLightUp(app, mouseX, mouseY):
         timePressIndex = temp1
         if timePressIndex != None:
             app.selectedTimeRectIndex = timePressIndex
-            values = ["15", "30", "60", "90"]
+            values = ["2", "30", "60", "90"]
             app.secondsLeft = values[app.selectedTimeRectIndex]
     #For the options label
     temp = getOptionsIndexFromMouseMove(app, mouseX, mouseY)
@@ -157,4 +157,3 @@ def onMousePressIcon(app, mouseX, mouseY):
     linkedInIconBounds = app.bottomTierIconStartingX, 760, app.bottomTierIconDimensions, app.bottomTierIconDimensions
     if button.Button.buttonBounds(mouseX, mouseY, linkedInIconBounds):
         webbrowser.open("https://www.linkedin.com/in/octaviusetetanzhylam/")
-

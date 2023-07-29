@@ -66,10 +66,10 @@ def drawInfoScreenInformation(app):
               157, 631, size = 16, font = 'Courier New', fill = "white", align = "left", bold = False)
     drawLabel('create an issue on GitHub (https://github.com/tanoctavius/Lexicon)', 
               157, 651, size = 16, font = 'Courier New', fill = "white", align = "left", bold = False)
-    drawLabel('To reach me further, please contact me at:', 
+    drawLabel('To reach me further with inquiries or any further opportunities, please contact me at:', 
               157, 681, size = 16, font = 'Courier New', fill = "white", align = "left", bold = False)
     drawLabel('Email: tanoctavius@gmail.com', 
-              187, 701, size = 16, font = 'Courier New', fill = "white", align = "left", bold = False)
+              157, 701, size = 16, font = 'Courier New', fill = "white", align = "left", bold = False)
     
 def onMousePressIcon(app, mouseX, mouseY):
     mainScreenBounds = 275, 93, 30, 20
