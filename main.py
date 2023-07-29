@@ -93,6 +93,7 @@ def reset(app):
 
     '''Typing variables:'''
     app.inputCharacters = []
+    app.words = []
     app.currCharacter = 0
     app.lastCharIndex = 0
     app.line1, app.line2, app.line3 = wordscraping.getPresentedScreenText(app)
@@ -153,6 +154,9 @@ def onStep(app):
 
                 #Inputing the final score after losing:
                 app.wpm = loseScreen.getFinalWpmScore(app)
+                app.rawWpm = loseScreen.getRawWpm(app)
+                app.accuracy = loseScreen.getAccuracy(app)
+                app.score = loseScreen.getFinalScore(app)
                 app.allScores.append((app.score, app.wpm, app.timeSelected, app.currMode, app.accuracy, len(app.inputCharacters)))
 
 def onMouseMove(app, mouseX, mouseY):

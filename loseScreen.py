@@ -3,22 +3,31 @@ import button
 import webbrowser
 
 def getFinalWpmScore(app):
-    words = []
+    app.words = []
     temp = ""
     for i in app.inputCharacters:
         if i != "space":
             temp += i
         else: 
-            words.append(temp)
+            app.words.append(temp)
             temp = ""
-    return int((len(words)/int(app.timeSelected)) * 60)
+    return int((len(app.words)/int(app.timeSelected)) * 60)
+
+def getFinalScore(app):
+    return int(app.wpm // 4 + app.accuracy // 4 + app.rawWpm // 6)
+
+def getRawWpm(app):
+    return int((len(app.inputCharacters)/ len(app.words))/ int(app.timeSelected) * 60)
+
+def getAccuracy(app):
+    return int((app.lastCharIndex/ len(app.inputCharacters))* 100) % 100.01
 
 def drawLoseScreenStatistics(app):
     #Drawing the statistics after completion 
     drawLabel('wpm', 95, 220, size = 30, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
     drawLabel(f'{app.wpm}', 95, 275, size = 70, font = 'impact', align = 'left', fill = rgb(228, 112, 61))
     drawLabel('final %', 95, 345, size = 30, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
-    drawLabel(f'{app.finalPercentage}', 95, 400, size = 70, font = 'impact', align = 'left', fill = rgb(228, 112, 61))
+    drawLabel(f'{app.score}', 95, 400, size = 70, font = 'impact', align = 'left', fill = rgb(228, 112, 61))
     drawLabel('accuracy', 95, 465, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
     drawLabel(f'{app.accuracy}%', 95, 495, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
     drawLabel('raw Wpm', 310, 465, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
