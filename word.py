@@ -86,7 +86,7 @@ def getChangedStyle(text, style):
             values = ["@", "<", ">", "/", "[", "]", "#", "$", "%", "^", "*"]
             result += word + random.choice(values)
         
-        elif style == "crazyNumbers":
+        elif style == "crazyNumber":
             values = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
             temp = ""
             for character in word:

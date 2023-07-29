@@ -200,7 +200,7 @@ def onMousePress(app, mouseX, mouseY):
 def onKeyPress(app, key):
     if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None:
         #Only once typing mode is activated, typing will trigger the start of the timer 
-        if key.isalpha():
+        if key.isalpha() or key.isnumeric():
             app.inputCharacters.append(key)
     if app.quickRestart and key == "tab":
         reset(app)
