@@ -64,6 +64,7 @@ def onAppStart(app):
 
     #Initialising the text:
     app.text = wordscraping.getText()
+    app.currMode = None
 
     '''Setting Selections:'''
     app.testDifficulty = "medium"

@@ -70,23 +70,23 @@ def getAverageLengthOfWords(input):
 def getChangedStyle(text, style):
     result = ""
     for word in text.split(" "):
-        if style == "RandomisedCapital":
+        if style == "crazyCapital":
             temp = ""
             for character in word:
                 temp += random.choice((character.upper(), character.lower()))
             result += temp + " "
         
-        elif style == "Undercase":
-            result += word.lower() + " "
+        elif style == "uppercase":
+            result += word.upper() + " "
         
-        elif style == "Normal":
+        elif style == "normal":
             result += word + " "
         
-        elif style == "CrazySpaces":
+        elif style == "crazySpaces":
             values = ["@", "<", ">", "/", "[", "]", "#", "$", "%", "^", "*"]
             result += word + random.choice(values)
         
-        elif style == "CrazyNumbers":
+        elif style == "crazyNumbers":
             values = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
             temp = ""
             for character in word:
@@ -94,7 +94,7 @@ def getChangedStyle(text, style):
                 temp += random.choice((character, new))
             result += temp + " "
     
-        elif style == "Mixed":
+        elif style == "mixed":
             tempMixedWord = ""
             tempValues = []
             for character in word:

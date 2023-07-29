@@ -15,7 +15,9 @@ def getText():
 
 def getChosenDifficultyText():
     finalText = app.text
-    return finalText
+    if app.currMode != None:
+        new = word.getChangedStyle(finalText, app.currMode)
+    return finalText if app.currMode == None else new
 
 def getPresentedScreenText(app):
     line1, line2, line3 = "", "", ""
