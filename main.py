@@ -97,7 +97,6 @@ def reset(app):
     app.lastCharIndex = 0
     app.line1, app.line2, app.line3 = wordscraping.getPresentedScreenText(app)
     app.previousLine = 0
-    app.currMode = None 
     
     #Initialising values for hovering + pressing options and time ribbon
     app.hoverTimeRectIndex = None
@@ -111,8 +110,9 @@ def reset(app):
     app.rawWpm = 0
     app.finalPercentage = 0
     app.accuracy = 0
-    app.timeSelected = "None"
-    app.modeSelected = "None"
+    app.currMode = None 
+    app.timeSelected = None
+    app.numberOfChar = 0 
 
 #----------------View Class--------------------------------
 def redrawAll(app):
@@ -163,8 +163,10 @@ def onMousePress(app, mouseX, mouseY):
         mainScreen.onMousePressLightUp(app, mouseX, mouseY)
         mainScreen.onMousePressIcon(app, mouseX, mouseY)
         if app.selectedLabelRectIndex != None and app.selectedTimeRectIndex != None: 
-            values = ["crazyCapital", "crazyNumber", "crazySpaces", "normal", "uppercase", "mixed"]
-            app.currMode = values[app.selectedLabelRectIndex]
+            labelValues = ["crazyCapital", "crazyNumber", "crazySpaces", "normal", "uppercase", "mixed"]
+            app.currMode = labelValues[app.selectedLabelRectIndex]
+            timeValues = ["15", "30", "60", "90"]
+            app.timeSelected = timeValues[app.selectedTimeRectIndex]
             app.line1, app.line2, app.line3 = wordscraping.getPresentedScreenText(app)
         
         #If restart icon is selected, app is restarted
@@ -208,8 +210,6 @@ def onKeyPress(app, key):
     else: 
         if app.line1[app.lastCharIndex - app.previousLine] == key or (app.line1[app.lastCharIndex - app.previousLine] == ' ' and key == 'space'):
             app.lastCharIndex += 1
-    print(app.lastCharIndex, app.previousLine)
-    
 
 #-------------------------------------------------------------------------------
 #Opening Images

@@ -15,7 +15,7 @@ def drawLoseScreenStatistics(app):
     drawLabel('time', 540, 465, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
     drawLabel(f'{app.timeSelected}', 540, 495, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
     drawLabel('mode', 760, 465, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
-    drawLabel(f'{app.modeSelected}', 760, 495, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
+    drawLabel(f'{app.currMode}', 760, 495, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
     drawLabel('characters', 1000, 465, size = 22, font = 'impact', fill = rgb(150, 150, 150), align = 'left')
     drawLabel(f'{app.numberOfChar}', 1000, 495, size = 22, font = 'impact', fill = rgb(228, 112, 61), align = 'left')
 

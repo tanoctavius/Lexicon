@@ -1,6 +1,7 @@
 from cmu_graphics import *
 import requests
 from bs4 import BeautifulSoup
+import word 
 
 def getText():
     r = requests.get('https://nobaproject.com/textbooks/introduction-to-psychology-the-full-noba-collection/modules/therapeutic-orientations')
