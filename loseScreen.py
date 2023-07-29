@@ -2,6 +2,17 @@ from cmu_graphics import *
 import button
 import webbrowser
 
+def getFinalWpmScore(app):
+    words = []
+    temp = ""
+    for i in app.inputCharacters:
+        if i != "space":
+            temp += i
+        else: 
+            words.append(temp)
+            temp = ""
+    return int((len(words)/int(app.timeSelected)) * 60)
+
 def drawLoseScreenStatistics(app):
     #Drawing the statistics after completion 
     drawLabel('wpm', 95, 220, size = 30, font = 'impact', fill = rgb(150, 150, 150), align = 'left')

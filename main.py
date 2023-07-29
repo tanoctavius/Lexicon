@@ -152,7 +152,8 @@ def onStep(app):
                 app.mainScreen = False 
 
                 #Inputing the final score after losing:
-                app.allScores.append((app.score, app.wpm, app.timeSelected, app.modeSelected, app.accuracy, len(app.inputCharacters)))
+                app.wpm = loseScreen.getFinalWpmScore(app)
+                app.allScores.append((app.score, app.wpm, app.timeSelected, app.currMode, app.accuracy, len(app.inputCharacters)))
 
 def onMouseMove(app, mouseX, mouseY):
     if app.mainScreen:
@@ -198,6 +199,7 @@ def onKeyPress(app, key):
             app.inputCharacters.append(key)
     if app.quickRestart and key == "tab":
         reset(app)
+    app.numberOfChar = len(app.inputCharacters)
     if app.lastCharIndex >= len(app.line1) + len(app.line2) + len(app.line3) - 1 + app.previousLine:
         app.line1, app.line2, app.line3 = wordscraping.getPresentedScreenText(app)
         app.previousLine = len(app.line1) + len(app.line2) + len(app.line3) - 11
