@@ -9,7 +9,6 @@ import loseScreen
 import settingScreen
 import infoScreen
 import leaderboardScreen 
-import scoreCalculation
 import wordscraping
 
 #----------------Model Class--------------------------------
@@ -99,6 +98,7 @@ def reset(app):
     app.lastCharIndex = 0
     app.line1, app.line2, app.line3 = wordscraping.getPresentedScreenText(app)
     app.previousLine = 0
+    app.graphicalScores = []
     
     #Initialising values for hovering + pressing options and time ribbon
     app.hoverTimeRectIndex = None
