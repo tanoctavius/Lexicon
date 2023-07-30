@@ -154,14 +154,17 @@ def onStep(app):
                 app.secondsLeft = int(app.secondsLeft) - 1
                 app.graphicalScores.append(app.lastCharIndex - app.lastCharIndexScores[-1])
                 app.lastCharIndexScores.append(app.lastCharIndex)
+
             if app.secondsLeft == 0:
                 app.loseScreen = True
                 app.mainScreen = False 
+                app.graphicalScores.append(app.lastCharIndex - app.lastCharIndexScores[-1])
+                app.lastCharIndexScores.append(app.lastCharIndex)
 
                 #Inputing the final score after losing:
                 app.wpm = loseScreen.getFinalWpmScore(app)
-                app.rawWpm = loseScreen.getRawWpm(app)
                 app.accuracy = loseScreen.getAccuracy(app)
+                app.rawWpm = loseScreen.getRawWpm(app)
                 app.score = loseScreen.getFinalScore(app)
                 app.allScores.append((app.score, app.wpm, app.timeSelected, app.currMode, app.accuracy, len(app.inputCharacters)))
 

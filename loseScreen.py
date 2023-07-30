@@ -26,6 +26,13 @@ def drawFinalGraphStatistics(app):
     averageYLine = 390 - (app.wpm/bestWpmSpeed * (390-205))
     drawLine(260, averageYLine, 1105, averageYLine, fill = rgb(228, 112, 61))
     #Drawing the points:
+    prevX, prevY = 260, 390 - (((app.graphicalScores[0] * 7)/ bestWpmSpeed)* (390-205))
+    for run in range(len(app.graphicalScores)):
+        yCord = 390 - (((app.graphicalScores[run] * 7)/ bestWpmSpeed )* (390-205)) 
+        xCord = 260 + (1105 - 260) * run / int(app.timeSelected)
+        drawCircle(xCord, yCord, 3, fill = 'white', border = None)
+        drawLine(prevX, prevY, xCord, yCord, fill = 'white')
+        prevX, prevY = xCord, yCord
 
 def drawLoseScreenStatistics(app):
     #Drawing the statistics after completion 
@@ -60,9 +67,7 @@ def getFinalScore(app):
     return int(app.wpm // 4 + app.accuracy // 4 + app.rawWpm // 6)
 
 def getRawWpm(app):
-    if len(app.words) > 0:
-        return int((len(app.inputCharacters)/ len(app.words))/ int(app.timeSelected) * 60)
-    return 0
+    return app.wpm * (1 + (1 - app.accuracy/100))
 
 def getAccuracy(app):
     return int((app.lastCharIndex/ len(app.inputCharacters))* 100) % 100.01

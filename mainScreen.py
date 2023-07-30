@@ -121,7 +121,7 @@ def onMousePressLightUp(app, mouseX, mouseY):
         timePressIndex = temp1
         if timePressIndex != None:
             app.selectedTimeRectIndex = timePressIndex
-            values = ["2", "30", "60", "90"]
+            values = ["15", "30", "60", "90"]
             app.secondsLeft = values[app.selectedTimeRectIndex]
     #For the options label
     temp = getOptionsIndexFromMouseMove(app, mouseX, mouseY)
