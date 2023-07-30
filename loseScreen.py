@@ -23,7 +23,7 @@ def drawFinalGraphStatistics(app):
     for i in range(6):
         drawLabel(f'{bestWpmSpeed//5 * i}', 247, 390 - 37 * i, font = 'impact', size = 14.5, fill = rgb(150, 150, 150))
     #Drawing the average line: 
-    averageYLine = app.wpm/bestWpmSpeed * (390-205) + 205
+    averageYLine = 390 - (app.wpm/bestWpmSpeed * (390-205))
     drawLine(260, averageYLine, 1105, averageYLine, fill = rgb(228, 112, 61))
     #Drawing the points:
 

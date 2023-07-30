@@ -99,6 +99,7 @@ def reset(app):
     app.line1, app.line2, app.line3 = wordscraping.getPresentedScreenText(app)
     app.previousLine = 0
     app.graphicalScores = []
+    app.lastCharIndexScores = [0]
     
     #Initialising values for hovering + pressing options and time ribbon
     app.hoverTimeRectIndex = None
@@ -115,6 +116,7 @@ def reset(app):
     app.currMode = None 
     app.timeSelected = None
     app.numberOfChar = 0 
+    app.secondInputCharacters = 0
 
 #----------------View Class--------------------------------
 def redrawAll(app):
@@ -150,6 +152,8 @@ def onStep(app):
             app.secondsLeft = int(app.secondsLeft)
             if app.secondsLeft > 0:    
                 app.secondsLeft = int(app.secondsLeft) - 1
+                app.graphicalScores.append(app.lastCharIndex - app.lastCharIndexScores[-1])
+                app.lastCharIndexScores.append(app.lastCharIndex)
             if app.secondsLeft == 0:
                 app.loseScreen = True
                 app.mainScreen = False 
